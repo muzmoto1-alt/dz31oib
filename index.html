@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0f172a">
+  <title>ДЗ 31-ОИБ</title>
+  <script src="https://telegram.org/js/telegram-web-app.js?63"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div>
+      <div class="eyebrow">Группа 31-ОИБ</div>
+      <h1>Мой планировщик</h1>
+      <div id="tgUser" class="muted"></div>
+    </div>
+    <button class="icon-btn" id="themeBtn" aria-label="Тема">☀️</button>
+  </header>
+
+  <main id="content">
+    <section id="home" class="screen active">
+      <div class="hero">
+        <div>
+          <div class="hero-kicker" id="tomorrowLabel">ДЗ на завтра</div>
+          <div class="hero-title" id="tomorrowCount">0 заданий</div>
+        </div>
+        <div class="hero-icon">✓</div>
+      </div>
+      <div id="tomorrowList" class="cards"></div>
+      <div id="emptyTomorrow" class="empty">
+        <div class="empty-icon">🎉</div>
+        <b>На завтра заданий нет</b>
+        <span>Можно спокойно отдыхать или добавить новое ДЗ.</span>
+      </div>
+    </section>
+
+    <section id="schedule" class="screen">
+      <div class="section-head">
+        <div><h2>Расписание</h2><p>1 семестр · 2026–27</p></div>
+      </div>
+      <div class="day-tabs" id="dayTabs"></div>
+      <div id="daySchedule"></div>
+    </section>
+
+    <section id="tasks" class="screen">
+      <div class="section-head">
+        <div><h2>Все задания</h2><p>Ваш список домашней работы</p></div>
+        <button class="small-btn" id="addTop">+ Добавить</button>
+      </div>
+      <div class="filters">
+        <button class="filter active" data-filter="all">Все</button>
+        <button class="filter" data-filter="active">Активные</button>
+        <button class="filter" data-filter="done">Выполненные</button>
+      </div>
+      <div id="allTasks" class="cards"></div>
+      <div id="emptyTasks" class="empty hidden">
+        <div class="empty-icon">📝</div><b>Пока нет заданий</b><span>Добавьте первое домашнее задание.</span>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="nav active" data-screen="home"><span>⌂</span><b>Главная</b></button>
+    <button class="nav" data-screen="schedule"><span>▦</span><b>Расписание</b></button>
+    <button class="nav add" id="addBtn"><span>＋</span></button>
+    <button class="nav" data-screen="tasks"><span>☷</span><b>Задания</b></button>
+  </nav>
+</div>
+
+<div class="modal" id="modal">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-head"><h2 id="modalTitle">Новое ДЗ</h2><button class="close" id="closeModal">×</button></div>
+    <form id="taskForm">
+      <input type="hidden" id="editId">
+      <label>Предмет
+        <select id="subject" required></select>
+      </label>
+      <label>Срок сдачи
+        <input type="date" id="due" required>
+      </label>
+      <label>Домашнее задание
+        <textarea id="text" rows="5" placeholder="Например: выучить параграф 4, сделать задания 1–5..." required></textarea>
+      </label>
+      <label>Файлы
+        <input type="file" id="files" multiple>
+        <span class="file-hint">Можно прикрепить несколько файлов. Файлы хранятся на устройстве в этой версии.</span>
+      </label>
+      <div id="attached" class="attached"></div>
+      <button class="primary" type="submit">Сохранить ДЗ</button>
+    </form>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
